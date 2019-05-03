@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>WebView</title>
+</head>
+<body>
+<main>
+    <h1>这是webView</h1>
+    <input type="text" placeholder="输入你想发送给Android的值">
+    <button onclick="handleClick()">执行Java方法</button>
+    <br>
+    <p id="result">执行结果:</p>
+</main>
+</body>
+<script>
+    function handleClick(text) {
+      if (window.nativeObject) {
+        var input = document.querySelector('input');
+        nativeObject.showToast(input.value, 'callback');
+      } else {
+        alert('不存在showToast方法');
+      }
+    }
+
+    function callback(result) {
+        document.getElementById('result').innerText = '执行结果:' + result;
+        return true;
+    }
+
+  </script>
+</html>
